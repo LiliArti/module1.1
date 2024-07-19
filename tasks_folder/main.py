@@ -82,3 +82,27 @@ def delete_task(task_id):
         save_tasks(tasks)
     else:
         raise ValueError ("Задача с таким ID не существует.")
+
+def main_menu():
+    while True:
+        print("Выберите действие: ")
+        print("1 - Создать новую задачу")
+        print("2 - Просмотреть задачи")
+        print("3 - Обновить задачу")
+        print("4 - Удалить задачу")
+        print("0 - Выйти из программы")
+
+        choice = input("Ваш выбор: ")
+        if choice == "1":
+            create_task_interface()
+        elif choice == "2":
+            view_tasks_interface()
+        elif choice == "3":
+            update_task_interface()
+        elif choice == "4":
+            delete_task_interface()
+        elif choice == "0":
+            break
+        else:
+            print("Неверный ввод. Попробуйте снова.")
+
