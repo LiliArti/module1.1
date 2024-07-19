@@ -117,3 +117,40 @@ def create_task_interface():
         status = input("Неверный ввод.Введите статус задачи (1 - новая, 2 - в процессе, 3 завершено)")
     create_task(name, description, priority, status)
     print("Задача создана")
+
+def view_tasks_interface():
+    print("Выберите опцию просмотра: ")
+    print("1 - Отобразить задачи в изначальном виде")
+    print("2 - Отсортировать по статусу")
+    print("3 - Отсортировать по приоритету")
+    print("4 - Осуществить поиск по названию или описанию")
+
+    choice = input("Ваш выбор: ")
+    tasks = read_tasks()
+
+    def print_task(task_id, task):
+        print(f"ID: {task_id}, Название: {task.get('name', 'Не указано')}, "
+              f"Описание: {task.get('description', 'Не указано')}, "
+              f"Приоритет: {task.get('priority', 'Не указано')}, "
+              f"Статус: {task.get('status', 'Не указано')}")
+
+    if choice == "1":
+        for task_id, task in tasks.items():
+            print_task(task_id, task)
+    elif choice == "2":
+        sorted_tasks = sorted(tasks.items(), key=lambda x: list(STATUSES.values()).index(x[1].get('status', '')))
+        for task_id, task in sorted_tasks:
+            print_task(task_id, task)
+    elif choice == "3":
+        sorted_tasks = sorted(tasks.items(), key=lambda x: list(PRIORITIES.values()).index(x[1].get('priority', '')))
+        for task_id, task in sorted_tasks:
+            print_task(task_id, task)
+    elif choice == "4":
+        search_term = input("Введите ключевое слово для поиска: ").lower()
+        filtered_tasks = {task_id: task for task_id, task in tasks.items() if
+                          search_term in task.get('name', '').lower() or search_term in task.get('description',
+                                                                                                 '').lower()}
+        for task_id, task in filtered_tasks.items():
+            print_task(task_id, task)
+    else:
+        print("Неверный ввод. Возвращение в главное меню.")
