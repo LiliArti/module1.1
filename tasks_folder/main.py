@@ -60,3 +60,19 @@ def create_task(name, description, priority, status):
         "status": status
     }
     save_tasks(tasks)
+
+def read_tasks():
+    return tasks
+
+def update_task(task_id, field, value):
+    if task_id in tasks:
+        if field == "priority":
+            tasks[task_id]["priority"] = PRIORITIES[value]
+        elif field == "status":
+            tasks[task_id]["status"] = STATUSES[value]
+        else:
+            tasks[task_id][field] = value
+        save_tasks(tasks)
+    else:
+        raise ValueError("Задача с таким ID не существует.")
+
