@@ -46,3 +46,7 @@ def save_tasks(tasks):
 
 tasks = load_tasks()
 
+def get_next_id():
+    if tasks:
+        return max(int(id) for id in tasks) + 1
+    return 1
