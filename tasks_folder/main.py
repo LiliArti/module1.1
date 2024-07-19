@@ -76,3 +76,9 @@ def update_task(task_id, field, value):
     else:
         raise ValueError("Задача с таким ID не существует.")
 
+def delete_task(task_id):
+    if task_id in tasks:
+        del tasks[task_id]
+        save_tasks(tasks)
+    else:
+        raise ValueError ("Задача с таким ID не существует.")
