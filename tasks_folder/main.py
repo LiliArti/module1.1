@@ -106,3 +106,14 @@ def main_menu():
         else:
             print("Неверный ввод. Попробуйте снова.")
 
+def create_task_interface():
+    name = input("введите название задачи: ")
+    description = input("введите описание звадачи: ")
+    priority = input("введите приоритет задачи (1 - низкий, 2 - средний, 3 - высокий)")
+    while priority not in PRIORITIES:
+        priority = input("Неверны ввод. Введите приоритет задачи (1 - низкий, 2 - средний, 3 - высокий) ")
+    status = input("Введите статус задачи (1 - новая, 2 - в процессе, 3 завершено)")
+    while status not in STATUSES:
+        status = input("Неверный ввод.Введите статус задачи (1 - новая, 2 - в процессе, 3 завершено)")
+    create_task(name, description, priority, status)
+    print("Задача создана")
