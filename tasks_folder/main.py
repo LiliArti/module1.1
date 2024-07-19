@@ -185,3 +185,14 @@ def update_task_interface():
         update_task(task_id, "status", new_value)
     else:
         print("Неверный ввод. Возвращение в главное меню.")
+
+def delete_task_interface():
+    task_id = input("Введите ID задачи, которую хотите удалить: ")
+    if task_id not in tasks:
+        print("Задача с таким ID не существует!")
+
+    delete_task(task_id)
+    print("Задача удалена.")
+
+if __name__ == "__main__":
+    main_menu()
