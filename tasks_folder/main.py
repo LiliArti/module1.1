@@ -50,3 +50,13 @@ def get_next_id():
     if tasks:
         return max(int(id) for id in tasks) + 1
     return 1
+
+def create_task(name, description, priority, status):
+    task_id = str(get_next_id())
+    tasks[task_id] = {
+        "name": name,
+        "description": description,
+        "priority": priority,
+        "status": status
+    }
+    save_tasks(tasks)
