@@ -38,3 +38,11 @@ def load_tasks():
         print("Файл с задачами не найден")
     return tasks
 
+def save_tasks(tasks):
+    with open(DATA_FILE, 'w', encoding='utf-8') as file:
+        for task_id, task in tasks.items():
+            line = f"{task_id}|{task['name']}|{task['description']}|{task['priority']}|{task['status']}\n"
+            file.write(line)
+
+tasks = load_tasks()
+
